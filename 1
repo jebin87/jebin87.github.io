@@ -1,0 +1,161 @@
+set serveroutput on  
+
+*********************************************************
+                     LARGEST
+                    **********
+ declare
+   a number (10);
+   b number (20);
+   c number (30);
+   begin
+   a:=&a;
+   b:=&b;
+   c:=&c;
+   if((a>b) and (a>c))
+   then
+   dbms_output.put_line( 'largest one is ' ||a);
+  else if ((b>a) and (b>c))
+then
+  dbms_output.put_line( 'largest one is ' ||b);
+ else
+  dbms_output.put_line( 'largest one is ' ||c);
+end if;
+end if;
+ if((a<b) and (a<c))
+  then
+  dbms_output.put_line( 'smallest one is ' ||a);
+ else if (b<c)
+then
+ dbms_output.put_line( 'smallest one is ' ||b);
+else
+dbms_output.put_line( 'smallest one is ' ||c);
+end if;
+end if;
+end;
+***********************************************************
+                       FACTORIAL
+                      ***********
+declare
+fac number:=1;
+a number(10);
+i number;
+begin
+a:=&a;
+for i in 1..a
+loop
+fac:=fac*i;
+end loop;
+dbms_output.put_line('factorial:'|| fac);
+end;
+/
+
+
+******************************************************************
+                     DISCOUNT
+                    ***********
+
+declare
+price number(10,3);
+discount number (10,3);
+begin
+price:=&price;
+dbms_output.put_line('Price: '||price);
+if(price>5000)
+then 
+discount:=price*(20/100);
+price:=price-discount;
+end if;
+dbms_output.put_line('Discount: '||discount);
+dbms_output.put_line('Total Amount: '||price);
+end;
+
+
+********************************************************************
+                   FACTORIAL USING FUNCTION
+                   *************************
+
+create or replace function facto(n number)
+return number is
+a number(10);
+fac number:=1;
+i number;
+begin
+a:=n;
+for i in 1..a
+loop
+fac:=fac*i;
+end loop;
+dbms_output.put_line('factorial:'|| fac);
+end;
+/
+
+declare
+fac number(20);
+j number;
+begin
+j:=&j;
+fac:=facto(j);
+dbms_output.put_line('factorial:'|| fac);
+end;
+/
+************************************************************************
+                       IN/OUT 
+                       ******
+              
+ DECLARE 
+   a number; 
+   b number; 
+   c number;
+PROCEDURE findMin(x IN number, y IN number, z OUT number) IS 
+BEGIN 
+   IF x < y THEN 
+      z:= x; 
+   ELSE 
+      z:= y; 
+   END IF; 
+END;   
+BEGIN 
+   a:= &a; 
+   b:= &b; 
+   findMin(a, b, c); 
+   dbms_output.put_line(' Minimum of numbers =  ' || c); 
+END; 
+/
+
+
+
+
+PL/SQL procedure successfully completed. 
+
+ii) DECLARE 
+   a number; 
+PROCEDURE squareNum(x IN OUT number) IS 
+BEGIN 
+  x := x * x; 
+END;  
+BEGIN 
+   a:= &a; 
+   squareNum(a); 
+   dbms_output.put_line(' Square = ' || a); 
+END; 
+/
+********************************************************
+                TRIGGER
+               *********
+
+
+create or replace trigger salarychange
+before delete or insert or update on customers
+for each row
+when (new.id>0)
+declare
+sal_diff number;
+begin
+sal_diff := :new.salary - :old.salary;
+dbms_output.put_line('old salary= '||:old.salary);
+ dbms_output.put_line('new salary ' ||:new.salary);
+ dbms_output.put_line('sal diff '||sal_diff);
+end;
+/
+
+
