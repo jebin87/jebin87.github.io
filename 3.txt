@@ -1,0 +1,89 @@
+insert into faculty values('F100','Arun');
+insert into faculty values('F101','Athul');
+insert into faculty values('F102','Shani');
+insert into faculty values('F103','Azin');
+insert into faculty values('F104','Saji');
+
+insert into subject  values('S200','IT',50,'F100');
+insert into subject  values('S201','BIO',50,'F102');
+insert into subject  values('S202','PHY',50,'F103');
+insert into subject  values('S203','MATHS',50,'F104');
+insert into subject  values('S204','GK',50,'F100');
+
+
+insert into student values('ST300','Abin',02/07/2000,'CS',01/02/2019);
+insert into student values('ST301','Albin',02/08/2000,'CE',01/02/2019);
+insert into student values('ST302','Jebin',02/09/2000,'MECH',01/02/2019);
+insert into student values('ST303','Alin',02/10/2000,'CS',01/02/2019);
+
+insert into mmark values('ST300','S200',40);
+insert into mmark values('ST300','S201',30);
+insert into mmark values('ST300','S202',32);
+insert into mmark values('ST300','S203',45);
+insert into mmark values('ST300','S204',49);
+
+insert into mmark values('ST301','S200',44);
+insert into mmark values('ST301','S201',20);
+insert into mmark values('ST301','S202',42);
+insert into mmark values('ST301','S203',35);
+insert into mmark values('ST301','S204',39);
+
+insert into mmark values('ST302','S200',33);
+insert into mmark values('ST302','S201',31);
+insert into mmark values('ST302','S202',47);
+insert into mmark values('ST302','S203',22);
+insert into mmark values('ST302','S204',50);
+
+
+insert into mmark values('ST304','S200',25);
+insert into mmark values('ST304','S201',45);
+insert into mmark values('ST304','S202',48);
+insert into mmark values('ST304','S203',19);
+insert into mmark values('ST304','S204',10);
+
+
+
+insert into boats values('101','titanic','black');
+insert into sailor values('102','Atlanta','red');
+insert into sailor values('103','flash','white');
+insert into sailor values('104','flash2','black');
+insert into sailor values('105','flash3','grey');
+
+
+insert into sailor values('202','Abin',8,21);
+insert into sailor values('204','Goe',5,21);
+insert into sailor values('206','Jebin',10,22);
+insert into sailor values('205','Helu',5,21);
+
+
+insert into reserve values(201,101,'2022-01-01');
+
+insert into reserve values(202,101,'2022-01-05');
+insert into reserve values(202,102,'2022-01-05');
+insert into reserve values(203,102,'2022-01-06');
+insert into reserve values(204,101,'2022-01-01');
+insert into reserve values(202,103,'2022-01-01');
+
+
+
+create table reserve(
+sid varchar(20) primary key,
+bid varchar(20),
+day date,
+foreignkey (bid) references boats(bid);
+
+
+create table emp444(id varchar(20),
+salary int);
+
+
+insert into emp444 values (10,1000);
+
+
+
+
+
+
+
+
+

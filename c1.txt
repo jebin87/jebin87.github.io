@@ -1,0 +1,38 @@
+create table EMP5(EMP_ID varchar(20),EMP_NAME varchar(20),SALARY number(20));
+insert into EMP5 values('E123','ABC','200000');
+insert into EMP5 values('E125','AYU','250000');
+insert into EMP5 values('E127','ADF','300000');
+insert into EMP5 values('E189','IJN','800000');
+insert into EMP5 values('E234','DFG','400000');
+
+
+
+
+set serveroutput on;
+declare
+cursor c is 
+select EMP_ID,EMP_NAME,SALARY from EMP5 order by salary desc;
+name EMP5.EMP_NAME%type;
+id EMP5.EMP_ID%type;
+sal EMP5.SALARY%type;
+tot EMP5.SALARY%type;
+i int;
+begin
+tot:=0;
+open c;
+for i in 1..10
+loop
+fetch c into id,name,sal;
+exit when c%NOTFOUND;
+tot:=tot+sal;
+dbms_output.Put_line('EMPLOYEE ID:'||id);
+dbms_output.Put_line('EMPLOYEE NAME:'||name);
+dbms_output.Put_line('SALARY:'||sal);
+dbms_output.Put_line('***************');
+end loop;
+dbms_output.Put_line('TOTAL SALARY:'||tot);
+commit;
+close c;
+end;
+/
+
